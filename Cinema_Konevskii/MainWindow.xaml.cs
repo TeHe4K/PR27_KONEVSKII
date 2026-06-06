@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Cinema_Konevskii.Classes;
+using Cinema_Konevskii.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +25,8 @@ namespace Cinema_Konevskii
         public MainWindow()
         {
             InitializeComponent();
+
+            new KinoteatrContext(0, "Тест", 12, 12).Add();
         }
     }
 }
