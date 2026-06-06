@@ -1,5 +1,4 @@
 ﻿using Cinema_Konevskii.Classes;
-using Cinema_Konevskii.Pages.Kinoteatr.Items;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,7 +27,7 @@ namespace Cinema_Konevskii.Pages.Afisha
             InitializeComponent();
             foreach (AfishaContext items in AllKinoteaters)
             {
-                parent.Children.Add(new item(items, this));
+                parent.Children.Add(new Items.Item(items, this));
             }
         }
 

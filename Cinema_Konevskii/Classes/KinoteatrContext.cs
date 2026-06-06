@@ -11,6 +11,11 @@ namespace Cinema_Konevskii.Classes
         {
         }
 
+        public override string ToString()
+        {
+            return Name;
+        }
+
         public static List<KinoteatrContext> Select()
         {
             List<KinoteatrContext> AllKinoteaters = new List<KinoteatrContext>();

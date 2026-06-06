@@ -21,7 +21,7 @@ namespace Cinema_Konevskii.Pages.Afisha.Items
     /// <summary>
     /// Логика взаимодействия для Item.xaml
     /// </summary>
-    public partial class Item : Page
+    public partial class Item : UserControl
     {
         List<KinoteatrContext> AllKinoteatrs = KinoteatrContext.Select();
         AfishaContext item;
@@ -30,7 +30,9 @@ namespace Cinema_Konevskii.Pages.Afisha.Items
         {
             InitializeComponent();
 
-            kinoteatrs.Text = AllKinoteatrs.Find(x => x.Id == item.IdKinoteatr).Name;
+            var kinoteatr = AllKinoteatrs.Find(x => x.Id == item.IdKinoteatr);
+            kinoteatrs.Items.Add(kinoteatr == null ? "" : kinoteatr.Name);
+            kinoteatrs.SelectedIndex = 0;
             name.Text = item.Name;
             date.Text = item.Time.ToString("yyyy-MM-dd");
             time.Text = item.Time.ToString("HH:mm");

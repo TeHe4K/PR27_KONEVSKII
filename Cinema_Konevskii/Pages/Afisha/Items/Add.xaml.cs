@@ -29,7 +29,7 @@ namespace Cinema_Konevskii.Pages.Afisha.Items
             InitializeComponent();
 
             foreach(var item in AllKinoteatrs)
-                kinoteatrs.Items.Add(item.Name);
+                kinoteatrs.Items.Add(item);
 
             kinoteatrs.Items.Add("Выберите...");
 
@@ -38,7 +38,7 @@ namespace Cinema_Konevskii.Pages.Afisha.Items
                 this.afisha = afisha;
                 kinoteatrs.SelectedIndex = AllKinoteatrs.FindIndex(x => x.Id == afisha.IdKinoteatr);
                 name.Text = afisha.Name;
-                date.Text = afisha.Time.ToString("yyyy-MM-dd");
+                date.SelectedDate = afisha.Time.Date;
                 time.Text = afisha.Time.ToString("HH:mm");
                 price.Text = afisha.Price.ToString();
                 bthAdd.Content = "Изменить";
@@ -59,12 +59,12 @@ namespace Cinema_Konevskii.Pages.Afisha.Items
                 MessageBox.Show("Необходимо указать наименование");
                 return;
             }
-            if (kinoteatrs.SelectedIndex != kinoteatrs.Items.Count - 1)
+            if (!(kinoteatrs.SelectedItem is KinoteatrContext selectedKinoteatr))
             {
                 MessageBox.Show("Выберите кинотеатр");
                 return;
             }
-            if (date.Text == "")
+            if (date.SelectedDate == null)
             {
                 MessageBox.Show("Необходимо указать дату");
                 return;
@@ -80,33 +80,32 @@ namespace Cinema_Konevskii.Pages.Afisha.Items
                 MessageBox.Show("Необходимо указать стоимость");
                 return;
             }
-            DateTime.TryParse(date.Text, out dateAfisha);
-            dateAfisha.Add(timeAfisha);
+            dateAfisha = date.SelectedDate.Value.Date + timeAfisha;
 
-            if (this.afisha == null)
+            if (afisha == null)
             {
                 AfishaContext newAfisha = new AfishaContext(
                     0,
-                    (kinoteatrs.SelectedItem as KinoteatrContext).Id,
+                    selectedKinoteatr.Id,
                     name.Text,
                     dateAfisha,
                     Price
                     );
                 newAfisha.Add();
                 MessageBox.Show("Запись успешно добавлена");
-                MainWindow.init.OpenPage(new Pages.Kinoteatr.Main());
+                MainWindow.init.OpenPage(new Pages.Afisha.Main());
             }
             else
             {
                 afisha = new AfishaContext(
                     afisha.Id,
-                    (kinoteatrs.SelectedItem as KinoteatrContext).Id,
+                    selectedKinoteatr.Id,
                     name.Text,
                     dateAfisha,
                     Price);
                 afisha.Update();
                 MessageBox.Show("Запись успешно обновлена");
-                MainWindow.init.OpenPage(new Pages.Kinoteatr.Main());
+                MainWindow.init.OpenPage(new Pages.Afisha.Main());
             }
         }
     }

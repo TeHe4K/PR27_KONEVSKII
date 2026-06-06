@@ -5,10 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Cinema_Konevskii"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800" MinHeight="320" MinWidth="360">
     <Grid>
-        <Button Content="Кинотеатр" Click="OpenKino" Height="26"  Width="100" Background="Green" Margin="10,10,690,0" VerticalAlignment="Top" />
-        <Button Content="Афиша" Click="OpenAfisha" Height="26"  Width="100" Background="Green" Margin="126,10,574,0" VerticalAlignment="Top" />
-        <Frame x:Name="frame" NavigationUIVisibility="Hidden" Margin="10,45,10,10"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" Margin="10,10,10,9">
+            <Button Content="Кинотеатр" Click="OpenKino" Height="26" Width="100" Background="Green" Margin="0,0,16,0"/>
+            <Button Content="Афиша" Click="OpenAfisha" Height="26" Width="100" Background="Green"/>
+        </StackPanel>
+        <Frame x:Name="frame" Grid.Row="1" NavigationUIVisibility="Hidden" Margin="10,0,10,10" />
     </Grid>
 </Window>

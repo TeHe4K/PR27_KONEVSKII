@@ -9,11 +9,15 @@
       Title="Main">
 
     <Grid>
-        <ScrollViewer Margin="5,5,5,45">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <ScrollViewer Grid.Row="0" Margin="5" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
             <StackPanel x:Name="parent">
 
             </StackPanel>
         </ScrollViewer>
-        <Button Content="Добавить"  Click="AddRecord" Height="25" Margin="690,415,0,0" HorizontalAlignment="Left" Width="100" Background="Green" VerticalAlignment="Top"/>
+        <Button Grid.Row="1" Content="Добавить" Click="AddRecord" Height="25" Margin="0,0,10,10" Background="Green" HorizontalAlignment="Right" Width="100"/>
     </Grid>
 </Page>
