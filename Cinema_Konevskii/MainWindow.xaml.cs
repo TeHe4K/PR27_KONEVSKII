@@ -22,11 +22,26 @@ namespace Cinema_Konevskii
     /// </summary>
     public partial class MainWindow : Window
     {
+        public static MainWindow init;
         public MainWindow()
         {
             InitializeComponent();
+            OpenPage(new Pages.Kinoteatr.Main());
+            init = this;
+        }
+        public void OpenPage(Page page)
+        {
+            frame.Navigate(page);
+        }
 
-            new KinoteatrContext(0, "Тест", 12, 12).Add();
+        private void OpenKino(object sender, RoutedEventArgs e)
+        {
+            OpenPage(new Pages.Kinoteatr.Main());
+        }
+
+        private void OpenAfisha(object sender, RoutedEventArgs e)
+        {
+            OpenPage(new Pages.Afisha.Main());
         }
     }
 }
